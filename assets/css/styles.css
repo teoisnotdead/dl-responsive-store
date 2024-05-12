@@ -25,7 +25,7 @@ a {
 
 html,
 body {
-  height: 100%;
+  height: 100vh;
   background: url(../img/background.webp) no-repeat center center fixed;
   background-size: cover;
 }
@@ -33,7 +33,7 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   justify-content: space-between;
 }
 
@@ -50,8 +50,13 @@ nav .toggle {
   display: block;
 }
 
+nav .toggle span {
+  cursor: pointer;
+  font-size: 2.5rem;
+}
+
 nav a img {
-  width: 150px;
+  width: 120px;
 }
 
 nav ul li {
@@ -69,6 +74,10 @@ nav ul li a:hover {
 
 nav ul {
   display: none;
+}
+
+main {
+  flex-grow: 1;
 }
 
 footer {
@@ -89,17 +98,167 @@ footer img {
   width: 50px;
 }
 
-@media (min-width: 577px) {
-  .container {
+.products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.item-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  justify-content: space-between;
+}
+
+.item-product img {
+  width: 80%;
+}
+
+.data-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.item-product .data-product p {
+  margin: 1rem 0;
+}
+
+.item-product .data-product button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
+
+.item-product .data-product button:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: #fff;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.filter select {
+  width: 100%;
+  padding: 8px 16px;
+  border: 2px solid #93c5c8;
+  background-color: #ffffff;
+  color: #333;
+  font-size: 16px;
+  border-radius: 8px;
+  appearance: none;
+  outline: none;
+}
+
+.filter select:focus {
+  border-color: #6699cc
+}
+
+.filter select {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140"><polygon points="35,45 105,45 70,105" style="fill:%236699cc"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px 20px;
+}
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-link {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #4285f4;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.page-link:hover {
+  background-color: #f0f0f0;
+}
+
+.page-link.active {
+  background-color: #4285f4;
+  color: white;
+}
+
+
+@media (min-width: 577px) and (max-width: 992px) {
+  .products {
     display: grid;
-    grid-template-columns: 0.8fr 5fr;
-    grid-template-rows: 1fr auto;
-    grid-template-areas:
-      'header filter'
-      'header products'
-      'footer products';
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    align-items: stretch;
   }
 
+  main {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      'filter products'
+      'filter products';
+  }
+
+  .filter {
+    grid-area: filter;
+    padding: 1rem;
+    display: flex;
+    align-items: self-start;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .products {
+    grid-area: products;
+  }
+
+  nav .toggle {
+    display: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  nav ul li {
+    margin: 0 1rem;
+  }
+}
+
+@media (min-width: 993px) {
+  
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: min-content minmax(60vh, 1fr) min-content;
+    grid-template-areas:
+      'header main'
+      'header main'
+      'footer main';
+    height: auto;
+  }
   nav {
     flex-direction: column;
     justify-content: flex-start;
@@ -123,6 +282,7 @@ footer img {
   }
 
   main {
+    grid-area: main;
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.5);
   }
@@ -133,8 +293,11 @@ footer img {
   }
 
   .products {
-    grid-area: products;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
     padding: 1rem;
+    align-items: stretch;
   }
 
   footer {
