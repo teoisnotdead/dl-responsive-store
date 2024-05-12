@@ -98,6 +98,14 @@ footer img {
   width: 50px;
 }
 
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 1rem 0;
+}
+
 .products {
   display: flex;
   flex-direction: column;
@@ -163,7 +171,7 @@ footer img {
 }
 
 .filter select:focus {
-  border-color: #6699cc
+  border-color: #6699cc;
 }
 
 .filter select {
@@ -171,13 +179,6 @@ footer img {
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 20px 20px;
-}
-
-.paginator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
 }
 
 .page-link {
@@ -194,11 +195,14 @@ footer img {
   background-color: #f0f0f0;
 }
 
+.paginator-container{
+  grid-area: paginator;
+}
+
 .page-link.active {
   background-color: #4285f4;
   color: white;
 }
-
 
 @media (min-width: 577px) and (max-width: 992px) {
   .products {
@@ -212,10 +216,10 @@ footer img {
   main {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: auto 1fr;
     grid-template-areas:
       'filter products'
-      'filter products';
+      'filter paginator';
   }
 
   .filter {
@@ -248,7 +252,6 @@ footer img {
 }
 
 @media (min-width: 993px) {
-  
   .container {
     display: grid;
     grid-template-columns: 1fr 4fr;
